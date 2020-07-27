@@ -25,10 +25,25 @@ require("channels")
 // External imports
 import "bootstrap";
 
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { initMapbox, initAutocomplete } from '../plugins/init_mapbox';
+// import { initSelect2 } from '../plugins/initSelect2'
 
 document.addEventListener('turbolinks:load', () => {
+  initMapbox();
+  initAutocomplete();
+
+  // initSelect2();
+
   // Call your functions here, e.g:
   // initSelect2();
+
+});
+
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css'
+
+flatpickr(".datepicker", {
+  mode: "range",
+  minDate: "today",
+  altInput: true,
 });

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_161826) do
+ActiveRecord::Schema.define(version: 2020_07_23_190033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 2020_07_18_161826) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "tool_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["tool_id"], name: "index_reviews_on_tool_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "tools", force: :cascade do |t|
     t.string "name"
     t.string "category"
@@ -59,6 +69,9 @@ ActiveRecord::Schema.define(version: 2020_07_18_161826) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "adress"
     t.index ["user_id"], name: "index_tools_on_user_id"
   end
 
@@ -79,5 +92,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_161826) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "reservations", "tools"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "tools"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tools", "users"
 end

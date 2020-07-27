@@ -1,12 +1,5 @@
-<br>
 <div class="container">
-  <h1>New tool</h1>
   <%= simple_form_for(@tool) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :category %>
-    <%= f.input :price %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit %>
   <%= f.input :name %>
   <%= f.input :adress, label: 'Address' %>
   <%= f.input :category, :label => "Category", :collection => ["Industrial Tools","House Tools", "Rare Tools", "New Tools"], :selected => "Industrial Tools" %>
@@ -16,4 +9,3 @@
   <%= f.submit %>
   <% end %>
 </div>
-
